@@ -83,4 +83,4 @@ sftp-config.json
 
 #media files
 media/
-
+.DS_Store
