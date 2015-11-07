@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    {% load staticfiles %}
+    <head>
+        <title>{% block pagetitle %} Welcome to MyQuora {% endblock %}</title>
+        {% include 'material/includes/material_css.html' %}
+        <link href="{% static 'base/css/common.css' %}" rel="stylesheet" />
+        {% block extrahead %}{% endblock %}
+    </head>
+    <body>
+        <main class='container'>
+            {% block content %}{% endblock %}
+        </main>
+        <script src="{% static 'base/js/jquery-2.1.4.min.js' %}"</script>
+        <script src="{% static 'material/js/jquery.datetimepicker.js' %}"></script>
+        <script src="{% static 'material/js/jquery.formset.js' %}"></script>
+        <script src="{% static 'material/js/materialize.js' %}"></script>
+        <script src="{% static 'material/js/material_init.js' %}"></script>
+        {% block morescripts %}{% endblock %}
+    </body>

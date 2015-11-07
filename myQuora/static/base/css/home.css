@@ -1,0 +1,35 @@
+.card-panel {
+    padding: 0;
+}
+.profile-pic {
+    height: 50px;
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid #fff;
+}
+.question-title {
+    font-size: 20px;
+    background: #E9EAED;
+    padding-left: 10px;
+    margin-top: -5px;
+}
+.question-list:nth-child(1) {
+    color: red;
+    background-color: red;
+}
+#header {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: #61AB61;
+    height: 80px;
+    padding: 20px;
+    color: white;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-around;
+}
+.btn {
+    margin-right: 10px;
+    font-size: 14px;
+}

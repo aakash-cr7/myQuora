@@ -1,0 +1,15 @@
+.heading {
+    color: #000;
+}
+#by, #at {
+    display: block;
+    margin-top: -15px;
+    font-size: 12px;
+    color: #9C9C9C;
+}
+#at {
+    margin-top: -5px;
+}
+.ques-info {
+    padding: 15px;
+}
