@@ -33,7 +33,7 @@ class SignupForm(forms.ModelForm):
         data_password1 = self.cleaned_data.get('password1')
         data_password2 = self.cleaned_data.get('password2')
         if data_password1 and data_password2 and data_password1 != data_password2:
-            raise formss.ValidationError('Passwords don\'t match')
+            raise forms.ValidationError('Passwords don\'t match')
         return data_password2
 
     def save(self, commit = True):
@@ -47,3 +47,7 @@ class SignupForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ['username', 'email', 'phone_number']
+
+
+class ForgotPasswordForm(forms.Form):
+    email = forms.EmailField()

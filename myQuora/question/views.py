@@ -1,18 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods, require_GET, require_POST
-from .forms import addQuestionForm
+from .forms import QuestionCreateForm
 from .models import Question
 
 # Create your views here.
 
 @login_required
 @require_http_methods(['GET', 'POST'])
-def addQuestion(request):
+def create_question(request):
     if request.method == 'GET':
-        f = addQuestionForm()
+        f = QuestionCreateForm()
     else:
-        f = addQuestionForm(request.POST)
+        f = QuestionCreateForm(request.POST)
         if f.is_valid():
             ques = f.save(commit = False)
             ques.by = request.user

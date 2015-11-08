@@ -5,8 +5,8 @@
 <div class="row">
     <div class="col s12 m8 l6 offset-m2 offset-l3">
         <div class="card-panel">
-            <h4 class="center-heading">Add Question</h4>
-            <form action="{% url 'addquestion' %}" method="POST">
+            <h4 class="center-heading">Create Question</h4>
+            <form action="{% url 'createquestion' %}" method="POST">
                 {% csrf_token %}
                 {% form form=form %}{% endform %}
                 <div class="row">

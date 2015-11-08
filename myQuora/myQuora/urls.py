@@ -24,6 +24,6 @@ urlpatterns = [
     url(r'^question/', include('question.urls')),
     url(r'^home/$', 'account.views.home', name = 'home'),
     url(r'^signup/$', 'account.views.signup', name = 'signup'),
-    url(r'^addquestion/$', 'question.views.addQuestion', name = 'addquestion'),
+    url(r'^create/$', 'question.views.create_question', name = 'createquestion'),
 ] + static.static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 # +..... added to serve media files
