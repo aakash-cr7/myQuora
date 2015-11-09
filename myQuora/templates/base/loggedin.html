@@ -17,7 +17,7 @@
                     <h5 class="center-heading">Question List</h5>
                     {% for question in user.questions_asked.all %}
                         <p class="question-title">
-                            <a href="{% url 'question_info' question.id %}">{{ question.title }}</a>
+                           {{ question.title }}
                         </p>
                     {% endfor %}
                 {% endif %}

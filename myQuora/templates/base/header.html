@@ -3,6 +3,6 @@
         <img class="profile-pic" src=/media/{{ user.profile_pic }} height='50' width='50'/>
     {% endif %}
     <p>Welcome {{ user.username }},</p> 
-    <a href="{% url 'createquestion' %}" class="btn waves-effect waves-light right">Ask Questions</a>
+    <a href="{% url 'create_question' %}" class="btn waves-effect waves-light right">Ask Questions</a>
     <a href="{% url 'logout' %}" class="btn waves-effect waves-light right">Logout</a>
 </div>
