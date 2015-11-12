@@ -2,24 +2,31 @@
 {% load material_form %}
 {% block pagetitle %}MyQuora | My Questions{% endblock %}
 {% block content %}
-<ul class="collection with-header">
-    <li class="collection-header"><h4 style="display:inline-block;">My Question </h4><a href="{% url 'create_question' %}" class="right">Create</a></li>
-    {% for question in questions %}
-    <li class="collection-item">
-        <div class="title"> {{ question.title }} <div>
-        <span class="by"> By {{ question.by.username }} </span>
-        <span class="on"> On {{ question.created_at }} </span>
-        <div class="desc"> {{ question.desc }} </div>
-        <div class="answer_count"> {{ question.answers.count }} Answer </div>
-    </li>
-    {% endfor %}
-    <li>
-        {% if page.has_previous %}
-        <span class="left"> <a href="{% url 'myquestions_with_page' page_num=page.previous_page_number %}">Previous</a></span>
-        {% endif %}
-        {% if page.has_next %}
-        <span class="right"><a href="{% url 'myquestions_with_page' page_num=page.next_page_number %}">Next</a></span>
-        {% endif %}
-    </li>
-</ul>
+<div class="row">
+    <div class="col s10 offset-s1">
+        <ul class="collection with-header">
+            <li class="collection-header">
+                <h4 style="display:inline-block;">My Question </h4>
+                <a href="{% url 'create_question' %}" class="btn waves-effect waves-light right">Ask Questions</a>
+            </li>
+            {% for question in questions %}
+            <li class="collection-item">
+                <div class="title"> {{ question.title }} <div>
+                <span class="by"> By {{ question.by.username }} </span>
+                <span class="on"> On {{ question.created_at }} </span>
+                <div class="desc"> {{ question.desc }} </div>
+                <div class="answer_count"> {{ question.answers.count }} Answer </div>
+            </li>
+            {% endfor %}
+            <li>
+                {% if page.has_previous %}
+                <span class="left"> <a href="{% url 'myquestions_with_page' page_num=page.previous_page_number %}" class="btn waves-effect waves-light right">Previous</a></span>
+                {% endif %}
+                {% if page.has_next %}
+                <span class="right"><a href="{% url 'myquestions_with_page' page_num=page.next_page_number %}" class="btn waves-effect waves-light right">Next</a></span>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</div>
 {% endblock %}

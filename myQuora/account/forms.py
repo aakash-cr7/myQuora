@@ -50,4 +50,22 @@ class SignupForm(forms.ModelForm):
 
 
 class ForgotPasswordForm(forms.Form):
-    email = forms.EmailField()
+    email = forms.EmailField(max_length = 254)
+    
+    def clean_email(self):
+        data_email = self.cleaned_data.get('email')
+        if data_email and CustomUser.objects.filter(email = data_email).count() == 0:
+            raise forms.ValidationError("Can't find that email, sorry.")
+        return data_email
+
+class ResetPasswordForm(forms.Form):
+    password1 = forms.CharField(label = 'Password', widget = forms.PasswordInput)
+    password2 = forms.CharField(label = 'Confirm Password', widget = forms.PasswordInput, help_text = 'Should be same as Password')
+
+    def clean_password2(self):
+        data_password1 = self.cleaned_data['password1']
+        data_password2 = self.cleaned_data['password2']
+
+        if data_password2 and data_password2 and data_password1 !=  data_password2:
+            raise forms.ValidataionError("Password don't match")
+        return data_password2
