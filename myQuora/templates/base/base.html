@@ -8,10 +8,8 @@
         {% block extrahead %}{% endblock %}
     </head>
     <body>
-        <main class='container'>
-            {% block content %}{% endblock %}
-        </main>
-        <script src="{% static 'base/js/jquery-2.1.4.min.js' %}"</script>
+        {% block content %}{% endblock %}
+        <script src="{% static 'base/js/jquery-2.1.4.min.js' %}"></script>
         <script src="{% static 'material/js/jquery.datetimepicker.js' %}"></script>
         <script src="{% static 'material/js/jquery.formset.js' %}"></script>
         <script src="{% static 'material/js/materialize.js' %}"></script>
