@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import authenticate
+from material import *
 from .models import CustomUser
 
 class LoginForm(forms.Form):
@@ -28,6 +29,12 @@ class LoginForm(forms.Form):
 class SignupForm(forms.ModelForm):
     password1 = forms.CharField(label = 'Password', widget = forms.PasswordInput)
     password2 = forms.CharField(label = 'Confirm Password', widget = forms.PasswordInput, help_text = 'Should be same as Password')
+    layout = Layout(
+        Row('username'),
+        Row('email'), 
+        Row('phone_number'),
+        Row(Span6('password1'), Span6('password2'))
+    )
 
     def clean_password2(self):
         data_password1 = self.cleaned_data.get('password1')
@@ -66,6 +73,6 @@ class ResetPasswordForm(forms.Form):
         data_password1 = self.cleaned_data['password1']
         data_password2 = self.cleaned_data['password2']
 
-        if data_password2 and data_password2 and data_password1 !=  data_password2:
+        if data_password1 and data_password2 and data_password1 !=  data_password2:
             raise forms.ValidataionError("Password don't match")
         return data_password2

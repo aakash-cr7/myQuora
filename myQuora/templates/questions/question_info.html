@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+{% load material_form %}
+{% load staticfiles %}
+{% block pagetitle %} MyQuora | Question {% endblock %}
+{% block extrahead %}
+<link href="{% static 'base/css/home.css' %}" rel="stylesheet" />
+<link href="{% static 'base/css/questionInfo.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+{% include 'base/header.html' %}
+    <div class="row">
+        <div class="col s10 offset-s1">
+            <div class="card-panel">
+                <div class="row ques-info">
+                    <div class="col s12">
+                        <h4 class="heading">Q. {{ ques }}</h4>
+                        <span id="by">by {{ ques.by }}</span>
+                        <span id="at">{{ ques.created_at }}</span>
+                        <span id="at">{{ ques.answers.count }} Answers</span>
+                    </div>
+                    <div class="col s12">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {% form form=form %}{% endform %}
+                            <button type="submit" name="login" class="btn waves-effect waves-light left">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <hr>
+                <h5 class="center-heading">Answers</h5>
+                <div class="row answers">
+                    <div class="col s12" id="answer-div">
+                        {% if ques.answers.all %}
+                            {% for ans in ans_set %}
+                            <div class="answer-div">
+                                <div>
+                                    {{ ans.text }}<br /> 
+                                    <span class="by">By {{ ans.by }}</span><br />
+                                    <span class="at">{{ ans.created_at }}</span>
+                                </div>
+                                <div>
+                                {% if ans.upvoted_by.count > 0 %}
+                                <span class="upvotes"> Upvotes:  {{ ans.upvoted_by.count }}</span>
+                                {% else %}
+                                    No upvotes
+                                {% endif %}
+                                </div>
+                                <div>
+                                <a href="{% url 'upvote_ans' ans.id %}" class="btn waves-effect waves-light left upvote-button">Upvote</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

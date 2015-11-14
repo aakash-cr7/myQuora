@@ -10,3 +10,13 @@ class QuestionCreateForm(forms.ModelForm):
     class Meta:
         model = Question
         fields = ['title', 'desc', 'topics']
+
+class AnswerForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(AnswerForm, self).__init__(*args, **kwargs)
+        self.fields['text'].label = 'Answer'
+
+    class Meta:
+        model = Answer
+        fields = ['text']
+

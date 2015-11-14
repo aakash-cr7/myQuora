@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_http_methods, require_GET, require_POST
 from django.core.paginator import Paginator
+from django.core.urlresolvers import reverse
 from django.db.models import Q
-from .forms import QuestionCreateForm
+from .forms import QuestionCreateForm, AnswerForm
 from .models import Question, Answer, Topic
 
 # Create your views here.
@@ -23,6 +24,32 @@ def create_question(request):
             f.save_m2m() # For saving Topics
             return redirect('myquestions')
     return render(request, 'questions/create.html', { 'form': f })
+
+@login_required
+def upvote_ans(request, ans_id):
+    answer = Answer.objects.get(id = ans_id)
+    answer.upvoted_by.add(request.user)
+    # To return to a view with arguments
+    url = reverse('question_info', kwargs={'question_id': answer.question.id })
+    return HttpResponseRedirect(url)
+
+@login_required
+def question_info(request, question_id):
+    ques = Question.objects.get(id = question_id)
+    ans_set = reversed(ques.answers.all())
+    if request.method == 'GET':
+        f = AnswerForm()
+    else:
+        f = AnswerForm(request.POST)
+        if f.is_valid():
+            ans = f.save(commit = False)
+            ans.by = request.user
+            ans.question = ques
+            ans.save()
+            return redirect('myquestions')
+        
+    context = { 'form': f, 'ques': ques, 'ans_set': ans_set }
+    return render(request, 'questions/question_info.html', context)
 
 @login_required
 @require_GET

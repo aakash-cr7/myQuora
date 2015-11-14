@@ -11,7 +11,9 @@
             </li>
             {% for question in questions %}
             <li class="collection-item">
-                <div class="title"> {{ question.title }} <div>
+                <a href="{% url 'question_info' question.id %}"> 
+                    <div class="title">{{ question.title }}<div>
+                </a>
                 <span class="by"> By {{ question.by.username }} </span>
                 <span class="on"> On {{ question.created_at }} </span>
                 <div class="desc"> {{ question.desc }} </div>

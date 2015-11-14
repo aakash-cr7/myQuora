@@ -13,3 +13,29 @@
 .ques-info {
     padding: 15px;
 }
+.answer-div {
+    padding: 10px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: #e9eaed;
+}
+.by,.at, .upvotes {
+    font-size: 11px;
+    display: block;
+    margin-top: -5px;
+}
+.by {
+    margin-top:0px;
+}
+.at {
+    margin-top: -25px;
+}
+.upvote-button {
+    line-height: 31px;
+    height: 29px;
+    font-size: 12px;
+    width: 86px;
+    padding-left: 18px;
+    margin-top: 10px;
+}
