@@ -3,7 +3,7 @@
         {% if user.profile_pic %}
         <img class="profile-pic" src="{{ user.profile_pic.url }}" height='50' width='50'/>
         {% endif %}
-        <p>Welcome {{ user.username }},</p> 
+        <p><a href="{% url 'profile' %}">Welcome {{ user.username }}</a>,</p> 
         <a href="{% url 'myquestions' %}" class="btn waves-effect waves-light right">My Questions</a>
         <a href="{% url 'create_question' %}" class="btn waves-effect waves-light right">Ask Questions</a>
         <a href="{% url 'logout' %}" class="btn waves-effect waves-light right">Logout</a>

@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 GENDER_CHOICES = (
     ('M', 'Male'),
     ('F', 'Female'),
-    ('NS', 'Not Set'),
+    ('NS', '--'),
 )
 
 class CustomUser(AbstractUser):
