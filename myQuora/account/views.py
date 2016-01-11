@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods, require_GET, require_POST
@@ -24,9 +24,14 @@ def login(request):
     else: # for POST request
         f = LoginForm(request.POST)
         if f.is_valid():
+            print("here")
             user = f.get_user()
             auth_login(request, user)
-            return redirect('home')
+            #return redirect('home')
+            return JsonResponse(data = { 'success' : True })
+        else:
+            data = { 'error' : True, 'errors' : dict(f.errors.items()) } 
+            return JsonResponse(status = 404, data = data)
     return render(request, 'authentication/login.html', { 'form': f })
 
 @require_GET

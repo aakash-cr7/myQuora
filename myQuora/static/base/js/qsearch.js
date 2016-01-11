@@ -1,8 +1,10 @@
 QSearch =(function() {
     var el;
     function updateResults(questions) {
+        $('#results').show();
         if( questions.length === 0) {
             $('.collection-header').html('No Results');
+            $('#results').hide();
         } else {
             $('.collection-header').html(questions.length + ' questions found ');
         }

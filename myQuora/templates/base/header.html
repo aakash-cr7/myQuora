@@ -1,7 +1,7 @@
 <div class="row header">
     <div class="col s12" id="header-content">
         {% if user.profile_pic %}
-        <img class="profile-pic" src="{{ MEDIA_URL }}{{ user.profile_pic }}" height='50' width='50'/>
+        <img class="profile-pic" src="{{ user.profile_pic.url }}" height='50' width='50'/>
         {% endif %}
         <p>Welcome {{ user.username }},</p> 
         <a href="{% url 'myquestions' %}" class="btn waves-effect waves-light right">My Questions</a>
